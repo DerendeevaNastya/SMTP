@@ -4,3 +4,4 @@ recipients = ["test.python.deren@gmail.com"]
 source_directory = 'source'
 login = 'test.python.deren@yandex.ru'
 password = 'Ada020398'
+text_file = 'message_text.txt'

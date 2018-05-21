@@ -22,17 +22,10 @@ def get_getters(list_getters):
     return ", ".join(result)
 
 
-def line_is_dots(b_line):
-    for c in b_line[:-2]:
-        if c != b'.':
-            return False
-    return True
-
-
 def get_text_data():
     data = b''
     try:
-        with open('source/message_text.txt', 'rb') as f:
+        with open('source/' + conf.text_file, 'rb') as f:
             lines = f.readlines()
             for line in lines:
                 if line[0] == 46:
@@ -48,7 +41,7 @@ def get_attachments(directory):
     mime = magic.Magic(mime=True)
     for file in os.listdir(directory):
         row_data = b''
-        if file == 'message_text.txt':
+        if file == conf.text_file:
             continue
         with open(directory + '/' + file, 'rb') as f:
             row_data = f.read()
@@ -119,17 +112,6 @@ def send_message():
     print('Email was sent')
 
     sock.close()
-
-
-def get_all_files(directory):
-    result = []
-    files = os.listdir(directory)
-    for file in files:
-        if file == 'message_text.txt':
-            continue
-        with open(file, "rb") as f:
-            result.append(f.read())
-    return result
 
 
 if __name__ == "__main__":
